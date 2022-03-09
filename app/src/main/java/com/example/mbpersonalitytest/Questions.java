@@ -2,17 +2,155 @@ package com.example.mbpersonalitytest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Scanner;
 
 public class Questions extends AppCompatActivity {
+
+    public int I = 0;
+    public int N = 0;
+    public int T = 0;
+    public int J = 0;
+    public int iterator = 1;
+    String[] questionsArray = {"Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q11", "Q12", "Q13", "Q14", "Q15", "Q16", "Q17", "Q18", "Q19", "Q20", "Q21", "Q22", "Q23", "Q24", "Q25", "Q26", "Q27", "Q28", "Q29", "Q30", "Q31", "Q32", "Q33", "Q34", "Q35", "Q36", "Q37", "Q38", "Q39", "Q40", " "};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personality_test);
+
+        TextView q = (TextView)findViewById(R.id.question);
+        q.setText(questionsArray[0]);
+
     }
 
+    public void onStronglyAgree(View stronglyAgree){
+        TextView q = (TextView)findViewById(R.id.question);
+        q.setText(questionsArray[iterator]);
+        if (iterator < 10){
+            I++;
+        }
+        if (iterator < 20 && iterator >= 10){
+            N++;
+        }
+        if (iterator < 30 && iterator >= 20){
+            T++;
+        }
+        if (iterator < 40 && iterator >= 30){
+            J++;
+        }
+        iterator++;
+        if (iterator == 41){
+            Intent i = new Intent(this, Results.class);
+            startActivity(i);
+        }
+    }
+
+    public void onAgree(View stronglyAgree){
+        TextView q = (TextView)findViewById(R.id.question);
+        q.setText(questionsArray[iterator]);
+        if (iterator < 10){
+            I++;
+        }
+        if (iterator < 20 && iterator >= 10){
+            N++;
+        }
+        if (iterator < 30 && iterator >= 20){
+            T++;
+        }
+        if (iterator < 40 && iterator >= 30){
+            J++;
+        }
+        iterator++;
+        if (iterator == 41){
+            Intent i = new Intent(this, Results.class);
+            startActivity(i);
+        }
+    }
+
+    public void onNotSure(View stronglyAgree){
+        TextView q = (TextView)findViewById(R.id.question);
+        q.setText(questionsArray[iterator]);
+        if (iterator < 10){
+            I++;
+        }
+        if (iterator < 20 && iterator >= 10){
+            N++;
+        }
+        if (iterator < 30 && iterator >= 20){
+            T++;
+        }
+        if (iterator < 40 && iterator >= 30){
+            J++;
+        }
+        iterator++;
+        if (iterator == 41){
+            Intent i = new Intent(this, Results.class);
+            startActivity(i);
+        }
+    }
+
+    public void onDisagree(View stronglyAgree){
+        TextView q = (TextView)findViewById(R.id.question);
+        q.setText(questionsArray[iterator]);
+        if (iterator < 10){
+            I++;
+        }
+        if (iterator < 20 && iterator >= 10){
+            N++;
+        }
+        if (iterator < 30 && iterator >= 20){
+            T++;
+        }
+        if (iterator < 40 && iterator >= 30){
+            J++;
+        }
+        iterator++;
+        if (iterator == 41){
+            Intent i = new Intent(this, Results.class);
+            startActivity(i);
+        }
+    }
+
+    public void onStronglyDisagree(View stronglyAgree){
+        TextView q = (TextView)findViewById(R.id.question);
+        q.setText(questionsArray[iterator]);
+        if (iterator < 10){
+            I++;
+        }
+        if (iterator < 20 && iterator >= 10){
+            N++;
+        }
+        if (iterator < 30 && iterator >= 20){
+            T++;
+        }
+        if (iterator < 40 && iterator >= 30){
+            J++;
+        }
+        iterator++;
+        if (iterator == 41){
+            Intent i = new Intent(this, Results.class);
+            startActivity(i);
+        }
+    }
+
+
+
+
+
+/*
     public Questions(int type, String text, int qNumber){}
+
 
     Questions Q1 = new Questions(1, "Whats your name?", 1);
     Questions Q2 = new Questions(1, "Whats your name?", 2);
@@ -54,8 +192,5 @@ public class Questions extends AppCompatActivity {
     Questions Q38 = new Questions(4, "Whats your name?", 38);
     Questions Q39 = new Questions(4, "Whats your name?", 39);
     Questions Q40 = new Questions(4, "Whats your name?", 40);
-
-    public static void runTest(){
-
-    }
+    */
 }
