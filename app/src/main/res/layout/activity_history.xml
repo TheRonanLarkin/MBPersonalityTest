@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/historyToolbarText"
+                android:id="@+id/resultsToolbarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -45,6 +45,20 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/finishButton"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:background="@drawable/roundbutton"
+                android:backgroundTint="@color/red"
+                android:onClick="finish"
+                android:text="@string/back"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="5dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -21,6 +21,23 @@ public class Questions extends AppCompatActivity {
     public int N = 0;
     public int T = 0;
     public int J = 0;
+    public int E = 0;
+    public int S = 0;
+    public int F = 0;
+    public int P = 0;
+
+    public char[] results = new char[4];
+
+    public double resultsPercent1 = 0;
+    public double resultsPercent2 = 0;
+    public double resultsPercent3 = 0;
+    public double resultsPercent4 = 0;
+
+    public int intResult1 = 0;
+    public int intResult2 = 0;
+    public int intResult3 = 0;
+    public int intResult4 = 0;
+
     public int iterator = 1;
     String[] questionsArray = {"Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q11", "Q12", "Q13", "Q14", "Q15", "Q16", "Q17", "Q18", "Q19", "Q20", "Q21", "Q22", "Q23", "Q24", "Q25", "Q26", "Q27", "Q28", "Q29", "Q30", "Q31", "Q32", "Q33", "Q34", "Q35", "Q36", "Q37", "Q38", "Q39", "Q40", " "};
 
@@ -35,162 +52,203 @@ public class Questions extends AppCompatActivity {
     }
 
     public void onStronglyAgree(View stronglyAgree){
+
         TextView q = (TextView)findViewById(R.id.question);
         q.setText(questionsArray[iterator]);
-        if (iterator < 10){
-            I++;
+
+        if (iterator < 11){
+            I = I + 2;
         }
-        if (iterator < 20 && iterator >= 10){
-            N++;
+        if (iterator < 21 && iterator > 10){
+            N = N + 2;
         }
-        if (iterator < 30 && iterator >= 20){
-            T++;
+        if (iterator < 31 && iterator > 20){
+            T = T + 2;
         }
-        if (iterator < 40 && iterator >= 30){
-            J++;
+        if (iterator < 41 && iterator > 30){
+            J = J + 2;
         }
+
         iterator++;
+
         if (iterator == 41){
-            Intent i = new Intent(this, Results.class);
-            startActivity(i);
+            tabulate();
         }
     }
 
     public void onAgree(View stronglyAgree){
+
         TextView q = (TextView)findViewById(R.id.question);
         q.setText(questionsArray[iterator]);
-        if (iterator < 10){
+
+        if (iterator < 11){
             I++;
         }
-        if (iterator < 20 && iterator >= 10){
+        if (iterator < 21 && iterator > 10){
             N++;
         }
-        if (iterator < 30 && iterator >= 20){
+        if (iterator < 31 && iterator > 20){
             T++;
         }
-        if (iterator < 40 && iterator >= 30){
+        if (iterator < 41 && iterator > 30){
             J++;
         }
+
         iterator++;
+
         if (iterator == 41){
-            Intent i = new Intent(this, Results.class);
-            startActivity(i);
+            tabulate();
         }
     }
 
     public void onNotSure(View stronglyAgree){
+
         TextView q = (TextView)findViewById(R.id.question);
         q.setText(questionsArray[iterator]);
-        if (iterator < 10){
-            I++;
-        }
-        if (iterator < 20 && iterator >= 10){
-            N++;
-        }
-        if (iterator < 30 && iterator >= 20){
-            T++;
-        }
-        if (iterator < 40 && iterator >= 30){
-            J++;
-        }
+
         iterator++;
+
         if (iterator == 41){
-            Intent i = new Intent(this, Results.class);
-            startActivity(i);
+            tabulate();
         }
     }
 
     public void onDisagree(View stronglyAgree){
+
         TextView q = (TextView)findViewById(R.id.question);
         q.setText(questionsArray[iterator]);
-        if (iterator < 10){
-            I++;
+
+        if (iterator < 11){
+            E++;
         }
-        if (iterator < 20 && iterator >= 10){
-            N++;
+        if (iterator < 21 && iterator > 10){
+            S++;
         }
-        if (iterator < 30 && iterator >= 20){
-            T++;
+        if (iterator < 31 && iterator > 20){
+            F++;
         }
-        if (iterator < 40 && iterator >= 30){
-            J++;
+        if (iterator < 41 && iterator > 30){
+            P++;
         }
+
         iterator++;
+
         if (iterator == 41){
-            Intent i = new Intent(this, Results.class);
-            startActivity(i);
+            tabulate();
         }
     }
 
-    public void onStronglyDisagree(View stronglyAgree){
-        TextView q = (TextView)findViewById(R.id.question);
+    public void onStronglyDisagree(View stronglyAgree) {
+
+        TextView q = (TextView) findViewById(R.id.question);
         q.setText(questionsArray[iterator]);
-        if (iterator < 10){
-            I++;
+
+        if (iterator < 11) {
+            E = E + 2;
         }
-        if (iterator < 20 && iterator >= 10){
-            N++;
+        if (iterator < 21 && iterator > 10) {
+            S = S + 2;
         }
-        if (iterator < 30 && iterator >= 20){
-            T++;
+        if (iterator < 31 && iterator > 20) {
+            F = F + 2;
         }
-        if (iterator < 40 && iterator >= 30){
-            J++;
+        if (iterator < 41 && iterator > 30) {
+            P = P + 2;
         }
+
         iterator++;
-        if (iterator == 41){
-            Intent i = new Intent(this, Results.class);
-            startActivity(i);
+
+        if (iterator == 41) {
+            tabulate();
         }
     }
 
+    public void tabulate(){
 
+        calculateIE();
+        calculateJP();
+        calculateNS();
+        calculateTF();
 
+        Intent i = new Intent(this, Results.class);
+        i.putExtra("Result", results);
+        i.putExtra("P1", Integer.toString(intResult1));
+        i.putExtra("P2", Integer.toString(intResult2));
+        i.putExtra("P3", Integer.toString(intResult3));
+        i.putExtra("P4", Integer.toString(intResult4));
 
+        startActivity(i);
+    }
 
-/*
-    public Questions(int type, String text, int qNumber){}
+    public void calculateIE(){
+        if (I > E){
+            resultsPercent1 =  ((I - E)/40.00) * 100;
+            intResult1 = (int) resultsPercent1 + 50;
+            results[0] = 'I';
+        }
+        if (E > I){
+            resultsPercent1 =  ((E - I)/40.00) * 100;
+            intResult1 = (int) resultsPercent1 + 50;
+            results[0] = 'E';
+        }
+        if (I == E){
+            resultsPercent1 = 50;
+            intResult1 = (int) resultsPercent1;
+            results[0] = 'I';
+        }
+    }
 
+    public void calculateNS(){
+        if (N > S){
+            resultsPercent2 =  ((N - S)/40.00) * 100;
+            intResult2 = (int) resultsPercent2 + 50;
+            results[1] = 'N';
+        }
+        if (S > N){
+            resultsPercent2 =  ((S - N)/40.00) * 100;
+            intResult2 = (int) resultsPercent2 + 50;
+            results[1] = 'S';
+        }
+        if (N == S){
+            resultsPercent2 = 50;
+            intResult2 = (int) resultsPercent2;
+            results[1] = 'N';
+        }
+    }
 
-    Questions Q1 = new Questions(1, "Whats your name?", 1);
-    Questions Q2 = new Questions(1, "Whats your name?", 2);
-    Questions Q3 = new Questions(1, "Whats your name?", 3);
-    Questions Q4 = new Questions(1, "Whats your name?", 4);
-    Questions Q5 = new Questions(1, "Whats your name?", 5);
-    Questions Q6 = new Questions(1, "Whats your name?", 6);
-    Questions Q7 = new Questions(1, "Whats your name?", 7);
-    Questions Q8 = new Questions(1, "Whats your name?", 8);
-    Questions Q9 = new Questions(1, "Whats your name?", 9);
-    Questions Q10 = new Questions(1, "Whats your name?", 10);
-    Questions Q11 = new Questions(2, "Whats your name?", 11);
-    Questions Q12 = new Questions(2, "Whats your name?", 12);
-    Questions Q13 = new Questions(2, "Whats your name?", 13);
-    Questions Q14 = new Questions(2, "Whats your name?", 14);
-    Questions Q15 = new Questions(2, "Whats your name?", 15);
-    Questions Q16 = new Questions(2, "Whats your name?", 16);
-    Questions Q17 = new Questions(2, "Whats your name?", 17);
-    Questions Q18 = new Questions(2, "Whats your name?", 18);
-    Questions Q19 = new Questions(2, "Whats your name?", 19);
-    Questions Q20 = new Questions(2, "Whats your name?", 20);
-    Questions Q21 = new Questions(3, "Whats your name?", 21);
-    Questions Q22 = new Questions(3, "Whats your name?", 22);
-    Questions Q23 = new Questions(3, "Whats your name?", 23);
-    Questions Q24 = new Questions(3, "Whats your name?", 24);
-    Questions Q25 = new Questions(3, "Whats your name?", 25);
-    Questions Q26 = new Questions(3, "Whats your name?", 26);
-    Questions Q27 = new Questions(3, "Whats your name?", 27);
-    Questions Q28 = new Questions(3, "Whats your name?", 28);
-    Questions Q29 = new Questions(3, "Whats your name?", 29);
-    Questions Q30 = new Questions(3, "Whats your name?", 30);
-    Questions Q31 = new Questions(4, "Whats your name?", 31);
-    Questions Q32 = new Questions(4, "Whats your name?", 32);
-    Questions Q33 = new Questions(4, "Whats your name?", 33);
-    Questions Q34 = new Questions(4, "Whats your name?", 34);
-    Questions Q35 = new Questions(4, "Whats your name?", 35);
-    Questions Q36 = new Questions(4, "Whats your name?", 36);
-    Questions Q37 = new Questions(4, "Whats your name?", 37);
-    Questions Q38 = new Questions(4, "Whats your name?", 38);
-    Questions Q39 = new Questions(4, "Whats your name?", 39);
-    Questions Q40 = new Questions(4, "Whats your name?", 40);
-    */
+    public void calculateTF() {
+        if (T > F) {
+            resultsPercent3 = ((T - F)/40.00) * 100;
+            intResult3 = (int) resultsPercent3 + 50;
+            results[2] = 'T';
+        }
+        if (F > T) {
+            resultsPercent3 = ((F - T)/40.00) * 100;
+            intResult3 = (int) resultsPercent3 + 50;
+            results[2] = 'F';
+        }
+        if (T == F){
+            resultsPercent3 = 50;
+            intResult3 = (int) resultsPercent3;
+            results[2] = 'T';
+        }
+    }
+
+    public void calculateJP(){
+        if (J > P){
+            resultsPercent4 =  ((J - P)/40.00) * 100;
+            intResult4 = (int) resultsPercent4 + 50;
+            results[3] = 'J';
+        }
+        if (P > J){
+            resultsPercent4 =  ((P - J)/40.00) * 100;
+            intResult4 = (int) resultsPercent4 + 50;
+            results[3] = 'P';
+        }
+        if (J == P){
+            resultsPercent4 = 50;
+            intResult4 = (int) resultsPercent4;
+            results[3] = 'J';
+        }
+    }
 }
