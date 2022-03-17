@@ -1,19 +1,10 @@
 package com.example.mbpersonalitytest;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Scanner;
 
 public class Questions extends AppCompatActivity {
 
@@ -26,47 +17,60 @@ public class Questions extends AppCompatActivity {
     public int F = 0;
     public int P = 0;
 
-    public char[] results = new char[4];
+    public char[] result = new char[4];
 
-    public double resultsPercent1 = 0;
-    public double resultsPercent2 = 0;
-    public double resultsPercent3 = 0;
-    public double resultsPercent4 = 0;
+    public double resultsPercentIE = 0;
+    public double resultsPercentNS = 0;
+    public double resultsPercentTF = 0;
+    public double resultsPercentJP = 0;
 
-    public int intResult1 = 0;
-    public int intResult2 = 0;
-    public int intResult3 = 0;
-    public int intResult4 = 0;
+    public int resultIE = 0;
+    public int resultNS = 0;
+    public int resultTF = 0;
+    public int resultJP = 0;
 
     public int iterator = 1;
-    String[] questionsArray = {"Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q11", "Q12", "Q13", "Q14", "Q15", "Q16", "Q17", "Q18", "Q19", "Q20", "Q21", "Q22", "Q23", "Q24", "Q25", "Q26", "Q27", "Q28", "Q29", "Q30", "Q31", "Q32", "Q33", "Q34", "Q35", "Q36", "Q37", "Q38", "Q39", "Q40", " "};
+
+    String[] questionsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personality_test);
 
-        TextView q = (TextView)findViewById(R.id.question);
-        q.setText(questionsArray[0]);
-
+        questionsArray = getResources().getStringArray(R.array.question_array);
+        TextView firstQ = (TextView)findViewById(R.id.question);
+        firstQ.setText(questionsArray[0]);
     }
 
     public void onStronglyAgree(View stronglyAgree){
 
-        TextView q = (TextView)findViewById(R.id.question);
-        q.setText(questionsArray[iterator]);
+        TextView nextQ = (TextView)findViewById(R.id.question);
+        nextQ.setText(questionsArray[iterator]);
 
-        if (iterator < 11){
+        if (iterator % 8 == 1){
             I = I + 2;
         }
-        if (iterator < 21 && iterator > 10){
+        if (iterator % 8 == 2){
             N = N + 2;
         }
-        if (iterator < 31 && iterator > 20){
+        if (iterator % 8 == 3){
             T = T + 2;
         }
-        if (iterator < 41 && iterator > 30){
+        if (iterator % 8 == 4){
             J = J + 2;
+        }
+        if (iterator % 8 == 5){
+            E = E + 2;
+        }
+        if (iterator % 8 == 6){
+            S = S + 2;
+        }
+        if (iterator % 8 == 7){
+            F = F + 2;
+        }
+        if (iterator % 8 == 0){
+            P = P + 2;
         }
 
         iterator++;
@@ -76,22 +80,36 @@ public class Questions extends AppCompatActivity {
         }
     }
 
+
+
     public void onAgree(View stronglyAgree){
 
-        TextView q = (TextView)findViewById(R.id.question);
-        q.setText(questionsArray[iterator]);
+        TextView nextQ = (TextView)findViewById(R.id.question);
+        nextQ.setText(questionsArray[iterator]);
 
-        if (iterator < 11){
+        if (iterator % 8 == 1){
             I++;
         }
-        if (iterator < 21 && iterator > 10){
+        if (iterator % 8 == 2){
             N++;
         }
-        if (iterator < 31 && iterator > 20){
+        if (iterator % 8 == 3){
             T++;
         }
-        if (iterator < 41 && iterator > 30){
+        if (iterator % 8 == 4){
             J++;
+        }
+        if (iterator % 8 == 5){
+            E++;
+        }
+        if (iterator % 8 == 6){
+            S++;
+        }
+        if (iterator % 8 == 7){
+            F++;
+        }
+        if (iterator % 8 == 0){
+            P++;
         }
 
         iterator++;
@@ -103,8 +121,8 @@ public class Questions extends AppCompatActivity {
 
     public void onNotSure(View stronglyAgree){
 
-        TextView q = (TextView)findViewById(R.id.question);
-        q.setText(questionsArray[iterator]);
+        TextView nextQ = (TextView)findViewById(R.id.question);
+        nextQ.setText(questionsArray[iterator]);
 
         iterator++;
 
@@ -115,20 +133,32 @@ public class Questions extends AppCompatActivity {
 
     public void onDisagree(View stronglyAgree){
 
-        TextView q = (TextView)findViewById(R.id.question);
-        q.setText(questionsArray[iterator]);
+        TextView nextQ = (TextView)findViewById(R.id.question);
+        nextQ.setText(questionsArray[iterator]);
 
-        if (iterator < 11){
-            E++;
+        if (iterator % 8 == 1){
+            I = I - 1;
         }
-        if (iterator < 21 && iterator > 10){
-            S++;
+        if (iterator % 8 == 2){
+            N = N - 1;
         }
-        if (iterator < 31 && iterator > 20){
-            F++;
+        if (iterator % 8 == 3){
+            T = T - 1;
         }
-        if (iterator < 41 && iterator > 30){
-            P++;
+        if (iterator % 8 == 4){
+            J = J - 1;
+        }
+        if (iterator % 8 == 5){
+            E = E - 1;
+        }
+        if (iterator % 8 == 6){
+            S = S - 1;
+        }
+        if (iterator % 8 == 7){
+            F = F - 1;
+        }
+        if (iterator % 8 == 0){
+            P = P - 1;
         }
 
         iterator++;
@@ -140,25 +170,37 @@ public class Questions extends AppCompatActivity {
 
     public void onStronglyDisagree(View stronglyAgree) {
 
-        TextView q = (TextView) findViewById(R.id.question);
-        q.setText(questionsArray[iterator]);
+        TextView nextQ = (TextView) findViewById(R.id.question);
+        nextQ.setText(questionsArray[iterator]);
 
-        if (iterator < 11) {
-            E = E + 2;
+        if (iterator % 8 == 1){
+            I = I - 2;
         }
-        if (iterator < 21 && iterator > 10) {
-            S = S + 2;
+        if (iterator % 8 == 2){
+            N = N - 2;
         }
-        if (iterator < 31 && iterator > 20) {
-            F = F + 2;
+        if (iterator % 8 == 3){
+            T = T - 2;
         }
-        if (iterator < 41 && iterator > 30) {
-            P = P + 2;
+        if (iterator % 8 == 4){
+            J = J - 2;
+        }
+        if (iterator % 8 == 5){
+            E = E - 2;
+        }
+        if (iterator % 8 == 6){
+            S = S - 2;
+        }
+        if (iterator % 8 == 7){
+            F = F - 2;
+        }
+        if (iterator % 8 == 0){
+            P = P - 2;
         }
 
         iterator++;
 
-        if (iterator == 41) {
+        if (iterator == 41){
             tabulate();
         }
     }
@@ -166,89 +208,89 @@ public class Questions extends AppCompatActivity {
     public void tabulate(){
 
         calculateIE();
-        calculateJP();
         calculateNS();
         calculateTF();
+        calculateJP();
 
         Intent i = new Intent(this, Results.class);
-        i.putExtra("Result", results);
-        i.putExtra("P1", Integer.toString(intResult1));
-        i.putExtra("P2", Integer.toString(intResult2));
-        i.putExtra("P3", Integer.toString(intResult3));
-        i.putExtra("P4", Integer.toString(intResult4));
+        i.putExtra("Result", result);
+        i.putExtra("P1", Integer.toString(resultIE));
+        i.putExtra("P2", Integer.toString(resultNS));
+        i.putExtra("P3", Integer.toString(resultTF));
+        i.putExtra("P4", Integer.toString(resultJP));
 
         startActivity(i);
     }
 
     public void calculateIE(){
         if (I > E){
-            resultsPercent1 =  ((I - E)/40.00) * 100;
-            intResult1 = (int) resultsPercent1 + 50;
-            results[0] = 'I';
+            resultsPercentIE =  ((I - E)/40.00) * 100;
+            resultIE = (int) resultsPercentIE + 50;
+            result[0] = 'I';
         }
         if (E > I){
-            resultsPercent1 =  ((E - I)/40.00) * 100;
-            intResult1 = (int) resultsPercent1 + 50;
-            results[0] = 'E';
+            resultsPercentIE =  ((E - I)/40.00) * 100;
+            resultIE = (int) resultsPercentIE + 50;
+            result[0] = 'E';
         }
         if (I == E){
-            resultsPercent1 = 50;
-            intResult1 = (int) resultsPercent1;
-            results[0] = 'I';
+            resultsPercentIE = 50;
+            resultIE = (int) resultsPercentIE;
+            result[0] = 'I';
         }
     }
 
     public void calculateNS(){
         if (N > S){
-            resultsPercent2 =  ((N - S)/40.00) * 100;
-            intResult2 = (int) resultsPercent2 + 50;
-            results[1] = 'N';
+            resultsPercentNS =  ((N - S)/40.00) * 100;
+            resultNS = (int) resultsPercentNS + 50;
+            result[1] = 'N';
         }
         if (S > N){
-            resultsPercent2 =  ((S - N)/40.00) * 100;
-            intResult2 = (int) resultsPercent2 + 50;
-            results[1] = 'S';
+            resultsPercentNS =  ((S - N)/40.00) * 100;
+            resultNS = (int) resultsPercentNS + 50;
+            result[1] = 'S';
         }
         if (N == S){
-            resultsPercent2 = 50;
-            intResult2 = (int) resultsPercent2;
-            results[1] = 'N';
+            resultsPercentNS = 50;
+            resultNS = (int) resultsPercentNS;
+            result[1] = 'N';
         }
     }
 
     public void calculateTF() {
         if (T > F) {
-            resultsPercent3 = ((T - F)/40.00) * 100;
-            intResult3 = (int) resultsPercent3 + 50;
-            results[2] = 'T';
+            resultsPercentTF = ((T - F)/40.00) * 100;
+            resultTF = (int) resultsPercentTF + 50;
+            result[2] = 'T';
         }
         if (F > T) {
-            resultsPercent3 = ((F - T)/40.00) * 100;
-            intResult3 = (int) resultsPercent3 + 50;
-            results[2] = 'F';
+            resultsPercentTF = ((F - T)/40.00) * 100;
+            resultTF = (int) resultsPercentTF + 50;
+            result[2] = 'F';
         }
         if (T == F){
-            resultsPercent3 = 50;
-            intResult3 = (int) resultsPercent3;
-            results[2] = 'T';
+            resultsPercentTF = 50;
+            resultTF = (int) resultsPercentTF;
+            result[2] = 'T';
         }
     }
 
     public void calculateJP(){
         if (J > P){
-            resultsPercent4 =  ((J - P)/40.00) * 100;
-            intResult4 = (int) resultsPercent4 + 50;
-            results[3] = 'J';
+            resultsPercentJP =  ((J - P)/40.00) * 100;
+            resultJP = (int) resultsPercentJP + 50;
+            result[3] = 'J';
         }
         if (P > J){
-            resultsPercent4 =  ((P - J)/40.00) * 100;
-            intResult4 = (int) resultsPercent4 + 50;
-            results[3] = 'P';
+            resultsPercentJP =  ((P - J)/40.00) * 100;
+            resultJP = (int) resultsPercentJP + 50;
+            result[3] = 'P';
         }
         if (J == P){
-            resultsPercent4 = 50;
-            intResult4 = (int) resultsPercent4;
-            results[3] = 'J';
+            resultsPercentJP = 50;
+            resultJP = (int) resultsPercentJP;
+            result[3] = 'J';
         }
     }
 }

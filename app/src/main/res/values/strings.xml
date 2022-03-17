@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MBPersonalityTest</string>
+    <string name="app_name">Myers Briggs Personality Test</string>
     <string name="title_activity_test">TestActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -32,4 +32,91 @@
     <string name="_50_n">50% N</string>
     <string name="_50_i">50% I</string>
     <string name="back">Back</string>
+
+    <string-array
+        name="question_array">
+        <item
+            >You would rather spend time with a small group of friends than at a crowded event</item>
+        <item
+            >You would describe yourself as open minded</item>
+        <item
+            >You sometimes find it more difficult than others to understand emotion</item>
+        <item
+            >You would describe yourself as an organized person</item>
+        <item
+            >You feel like a natural in social situations</item>
+        <item
+            >You tend to focus on the now rather than what could be</item>
+        <item
+            >You like to follow your heart</item>
+        <item
+            >You find it hard to focus on the same thing for long periods of time</item>
+        <item
+            >You like to have a lot of alone time</item>
+        <item
+            >You tend to search for deeper or hidden meaning in art</item>
+        <item
+            >You are always in control of your emotions</item>
+        <item
+            >You always like to plan ahead</item>
+        <item
+            >You find it easy to make small talk with strangers</item>
+        <item
+            >You see yourself as a mostly pragmatic and practical person</item>
+        <item
+            >You are often feel strong emotions watching movies or while reading books</item>
+        <item
+            >You are flexible and can easily deal with unexpected challenges</item>
+        <item
+            >You have a small group of friends</item>
+        <item
+            >You like to interpret your own meanings from books or movies</item>
+        <item
+            >You believe logic and reason are the most important aspects of decision making</item>
+        <item
+            >You like to have a backup plan in case of any unforeseen events</item>
+        <item
+            >You do not mind being the center of attention</item>
+        <item
+            >You like it when an artistic piece has a clear theme rather than a more abstract one</item>
+        <item
+            >You typically consider the emotions of others</item>
+        <item
+            >You will often switch between different projects as you work</item>
+        <item
+            >You prefer to work alone instead of in a group</item>
+        <item
+            >You like to entertain abstract theories about what the future may bring</item>
+        <item
+            >You feel that most if not all problems are best solved in a rational, logical way</item>
+        <item
+            >You like to make lists of tasks to be completed and accomplish them one at a time</item>
+        <item
+            >You feel energized in a large group of people</item>
+        <item
+            >You do not like to spend time on ideas that could be considered intangible or far fetched</item>
+        <item
+            >Your mood can change very quickly</item>
+        <item
+            >You have many varied passions that are constantly evolving and changing</item>
+        <item
+            >You are known to be quiet or reserved</item>
+        <item
+            >You have a tendency to get lost in your own imagination</item>
+        <item
+            >You feel people should spend more time on rationality as opposed to their emotions</item>
+        <item
+            >You prefer to complete all of your work before taking time to relax</item>
+        <item
+            >You have a large group of friends</item>
+        <item
+            >You find simplicity more attractive than complexity</item>
+        <item
+            >You find it easy to discern how someone else may be feeling</item>
+        <item
+            >You seem to often struggle with meeting work deadlines</item>
+        <item
+            >    </item>
+    </string-array>
+
 </resources>

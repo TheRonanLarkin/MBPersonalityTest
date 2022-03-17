@@ -48,20 +48,23 @@
 
     <TextView
         android:id="@+id/question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="362dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:text="@string/test_question"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.125" />
 
     <Button
         android:id="@+id/agree"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/red"
         android:onClick="onAgree"
@@ -74,12 +77,12 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.738" />
+        app:layout_constraintVertical_bias="0.575" />
 
     <Button
         android:id="@+id/stronglyAgree"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/red"
         android:onClick="onStronglyAgree"
@@ -92,12 +95,12 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
+        app:layout_constraintVertical_bias="0.450" />
 
     <Button
         android:id="@+id/notSure"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/red"
         android:onClick="onNotSure"
@@ -110,12 +113,12 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.818" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <Button
         android:id="@+id/disagree"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/red"
         android:onClick="onDisagree"
@@ -128,12 +131,12 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
+        app:layout_constraintVertical_bias="0.825" />
 
     <Button
         android:id="@+id/stronglyDisagree"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/red"
         android:onClick="onStronglyDisagree"
@@ -146,7 +149,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.978" />
+        app:layout_constraintVertical_bias="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
