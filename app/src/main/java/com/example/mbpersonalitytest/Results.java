@@ -7,26 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Results extends AppCompatActivity {
 
-    public char[] INTJ = {'I', 'N', 'T', 'J'};
-    public char[] INTP = {'I', 'N', 'T', 'P'};
-    public char[] INFJ = {'I', 'N', 'F', 'J'};
-    public char[] INFP = {'I', 'N', 'F', 'P'};
-    public char[] ISFP = {'I', 'S', 'F', 'P'};
-    public char[] ISTP = {'I', 'S', 'T', 'P'};
-    public char[] ISFJ = {'I', 'S', 'F', 'J'};
-    public char[] ISTJ = {'I', 'S', 'T', 'J'};
-    public char[] ENTJ = {'E', 'N', 'T', 'J'};
-    public char[] ENTP = {'E', 'N', 'T', 'P'};
-    public char[] ENFJ = {'E', 'N', 'F', 'J'};
-    public char[] ENFP = {'E', 'N', 'F', 'P'};
-    public char[] ESFP = {'E', 'S', 'F', 'P'};
-    public char[] ESTP = {'E', 'S', 'T', 'P'};
-    public char[] ESFJ = {'E', 'S', 'F', 'J'};
-    public char[] ESTJ = {'E', 'S', 'T', 'J'};
-
     String resultText;
+    String[] resultsTexts = new String[5];
+    String[] resultsDates = new String[5];
+    int iterator = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +54,31 @@ public class Results extends AppCompatActivity {
         TextView firstQ = (TextView)findViewById(R.id.rText);
         firstQ.setText(resultText);
 
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+
+        resultsTexts[iterator % 5] = bannerResult;
+        resultsDates[iterator % 5] = currentDate;
+
+        Intent j = new Intent(this, History.class);
+
+        j.putExtra("RT", resultsTexts);
+        j.putExtra("RD", resultsDates);
+        j.putExtra("I", iterator);
+
+        iterator++;
+
+        
+
     }
 
     public void finish(View finishButton){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }

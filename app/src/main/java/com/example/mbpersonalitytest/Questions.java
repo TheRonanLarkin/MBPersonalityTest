@@ -43,6 +43,11 @@ public class Questions extends AppCompatActivity {
         firstQ.setText(questionsArray[0]);
     }
 
+    public void finish(View finishButton){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
     public void onStronglyAgree(View stronglyAgree){
 
         TextView nextQ = (TextView)findViewById(R.id.question);
@@ -219,6 +224,9 @@ public class Questions extends AppCompatActivity {
         i.putExtra("P3", Integer.toString(resultTF));
         i.putExtra("P4", Integer.toString(resultJP));
 
+        Intent j = new Intent(this, History.class);
+        i.putExtra("Result", result);
+
         startActivity(i);
     }
 
@@ -293,4 +301,5 @@ public class Questions extends AppCompatActivity {
             result[3] = 'J';
         }
     }
+
 }

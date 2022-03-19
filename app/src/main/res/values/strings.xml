@@ -96,6 +96,9 @@
     <string name="esfj">
         ESFJ:\n\nExtroversion (E): Extraverts really enjoy social interactions, often seeking them out. They are often very verbally expressive and not afraid to be heard. Extraverts will usually choose to lead when given the opportunity.\n\nSensing (S): People with this trait usually prefer to work with more tangible ideas rather than abstract ones. They are much more likely to focus on the present rather than the past or the future. They tend to take a very practical approach to problem solving.\n\nFeeling (F): The feeling trait applies to those with a greater emotional awareness. They tend to show a greater amount of empathy for those around them and will usually consider the feelings of others when making their decisions. They are the kind of people who like to follow their hearts.\n\nJudging (J): Those who possess this trait are mostly organized. They enjoy planning and make plans for almost any scenario, then do their best to stick to it. People with this trait also usually have a good work ethic and will usually have a set of goals and always work towards them.\n\nRecommended career paths include: Museum Curator, Psychologist, Medical Researcher.\n\n
     </string>
+    <string name="backbutton"><![CDATA[<]]></string>
+    <string name="see_more">See more</string>
+    <string name="testtime">testTime</string>
 
     <string-array
         name="question_array">

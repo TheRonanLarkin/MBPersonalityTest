@@ -37,7 +37,7 @@
                 android:id="@+id/resultsToolbarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:text="@string/historyToolbarText"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -47,9 +47,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/finishButton"
+                android:id="@+id/backButton"
                 android:layout_width="50sp"
                 android:layout_height="50sp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/roundbutton"
                 android:backgroundTint="@color/red"
                 android:onClick="finish"
@@ -57,11 +58,34 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="5dp" />
+                app:layout_constraintEnd_toStartOf="@+id/resultsToolbarText"
+                app:layout_constraintHorizontal_bias="0.012"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="79dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AppBarLayout" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="49dp"
+        android:text="TextView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
