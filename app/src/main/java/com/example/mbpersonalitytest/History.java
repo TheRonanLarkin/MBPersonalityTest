@@ -3,33 +3,36 @@ package com.example.mbpersonalitytest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class History extends AppCompatActivity {
 
-    String[] resultHistory = new String[5];
-    String[] dateHistory = new String[5];
+    ListView resultsList = findViewById(R.id.resultsList);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        Intent i = getIntent();
-        String[] resultText = i.getStringArrayExtra("RT");
-        String[] resultDate = i.getStringArrayExtra("RD");
-        int iterator = i.getIntExtra("I", 0);
+        Database database = new Database(History.this);
+        List<ResultsModel> results = database.readResults();
 
-        TextView r = (TextView)findViewById(R.id.textView);
-        r.setText(resultText[iterator]);
+        //Toast.makeText(History.this, results.toString(), Toast.LENGTH_SHORT).show();
 
-        TextView r2 = (TextView)findViewById(R.id.textView2);
-        r2.setText(resultDate[iterator]);
+        //ArrayAdapter resultArrayAdapter = new ArrayAdapter(History.this, android.R.layout.simple_list_item_1);
+        //resultsList.setAdapter(resultArrayAdapter);
 
     }
 
+    //method to handle back button functionality
     public void finish(View finishButton){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);

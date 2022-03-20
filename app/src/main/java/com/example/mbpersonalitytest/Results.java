@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,26 +15,27 @@ import java.util.Date;
 
 public class Results extends AppCompatActivity {
 
+    //string to hold description text for whichever personality type is returned
     String resultText;
-    String[] resultsTexts = new String[5];
-    String[] resultsDates = new String[5];
-    int iterator = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
+        //variable to keep track of which of 16 types result matches with
         int type = 0;
 
+        //reading in relevant info from questions class with getExtra
         Intent i = getIntent();
-        char[] bannerResultArray = i.getCharArrayExtra("Result");
+        char[] bannerResultArray = i.getCharArrayExtra("result");
         String bannerResult = String.valueOf(bannerResultArray);
         String resultTabIE = i.getStringExtra("P1");
         String resultTabNS = i.getStringExtra("P2");
         String resultTabTF = i.getStringExtra("P3");
         String resultTabJP = i.getStringExtra("P4");
 
+        //setting the banner to four letter result as string and adding individual letters and percentages to display tab
         TextView r0 = (TextView)findViewById(R.id.resultsToolbarText);
         r0.setText(bannerResult);
 
@@ -54,35 +56,41 @@ public class Results extends AppCompatActivity {
         TextView firstQ = (TextView)findViewById(R.id.rText);
         firstQ.setText(resultText);
 
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+        //assigning formatted date of test completion to string variable
+        Date currentDate = Calendar.getInstance().getTime();
+        String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(currentDate);
 
-        resultsTexts[iterator % 5] = bannerResult;
-        resultsDates[iterator % 5] = currentDate;
+        ResultsModel resultsModel;
 
-        Intent j = new Intent(this, History.class);
+        try {
+            resultsModel = new ResultsModel(-1, bannerResult, formattedDate);
+            Toast.makeText(Results.this, resultsModel.toString(), Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e){
+            Toast.makeText(Results.this, "Error Saving Result", Toast.LENGTH_SHORT).show();
+            resultsModel = new ResultsModel(-1, "Error", "Error");
+        }
 
-        j.putExtra("RT", resultsTexts);
-        j.putExtra("RD", resultsDates);
-        j.putExtra("I", iterator);
-
-        iterator++;
-
-        
+        Database database = new Database(Results.this);
+        database.addResult(resultsModel);
+        Toast.makeText(Results.this, "Result Saved Successfully", Toast.LENGTH_SHORT).show();
 
     }
 
+    //giving functionality to back button
     public void finish(View finishButton){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 
+    //overriding functionality of phone back button to stop user from returning to quiz page
     @Override
     public void onBackPressed() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 
+    //method to decide which result description is returned based on its assigned integer value
     public String returnResultText(int type){
 
         String text = "test";
@@ -139,6 +147,7 @@ public class Results extends AppCompatActivity {
         return text;
     }
 
+    //finding which of 16 types the result is and returning it to above method
     public int returnResultType(char[] result){
         int type = 0;
 

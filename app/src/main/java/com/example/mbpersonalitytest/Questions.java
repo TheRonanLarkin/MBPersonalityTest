@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 public class Questions extends AppCompatActivity {
 
+    //variables to track points given to each letter in result
     public int I = 0;
     public int N = 0;
     public int T = 0;
@@ -17,20 +18,25 @@ public class Questions extends AppCompatActivity {
     public int F = 0;
     public int P = 0;
 
+    //storing result as size 4 character array
     public char[] result = new char[4];
 
+    //storing points scored as a percentage to display on results page
     public double resultsPercentIE = 0;
     public double resultsPercentNS = 0;
     public double resultsPercentTF = 0;
     public double resultsPercentJP = 0;
 
+    //casting percentage to integer for display on results page
     public int resultIE = 0;
     public int resultNS = 0;
     public int resultTF = 0;
     public int resultJP = 0;
 
+    //iterator to keep track of which question the user is on
     public int iterator = 1;
 
+    //array of questions to be filled from questions stored in xml resources
     String[] questionsArray;
 
     @Override
@@ -38,16 +44,20 @@ public class Questions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personality_test);
 
+        //reading xml questions array into questionsArray and setting as text view
         questionsArray = getResources().getStringArray(R.array.question_array);
         TextView firstQ = (TextView)findViewById(R.id.question);
         firstQ.setText(questionsArray[0]);
     }
 
+    //method to handle back button functionality
     public void finish(View finishButton){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 
+    //all buttons either add or subtract points from each letter depending on context of question
+    //questions are ordered I N T J E S F P and therefore mod 8 is used
     public void onStronglyAgree(View stronglyAgree){
 
         TextView nextQ = (TextView)findViewById(R.id.question);
@@ -80,6 +90,7 @@ public class Questions extends AppCompatActivity {
 
         iterator++;
 
+        //when iterator reaches 41, tabulate method is called and quiz ends
         if (iterator == 41){
             tabulate();
         }
@@ -210,6 +221,7 @@ public class Questions extends AppCompatActivity {
         }
     }
 
+    //tabulate method calculates which of each letter is to be added to result
     public void tabulate(){
 
         calculateIE();
@@ -217,19 +229,18 @@ public class Questions extends AppCompatActivity {
         calculateTF();
         calculateJP();
 
+        //all relevant result information is passed to the results page with putExtra
         Intent i = new Intent(this, Results.class);
-        i.putExtra("Result", result);
+        i.putExtra("result", result);
         i.putExtra("P1", Integer.toString(resultIE));
         i.putExtra("P2", Integer.toString(resultNS));
         i.putExtra("P3", Integer.toString(resultTF));
         i.putExtra("P4", Integer.toString(resultJP));
 
-        Intent j = new Intent(this, History.class);
-        i.putExtra("Result", result);
-
         startActivity(i);
     }
 
+    //four methods each deciding values for result and results percentage
     public void calculateIE(){
         if (I > E){
             resultsPercentIE =  ((I - E)/40.00) * 100;

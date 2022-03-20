@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    //methods to give functionality to start test and test history buttons
     public void startTest(View startButton){
         Intent i = new Intent(this, Questions.class);
         startActivity(i);
