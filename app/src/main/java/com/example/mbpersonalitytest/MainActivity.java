@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewHistory(View historyButton){
+
         Intent i = new Intent(this, History.class);
         startActivity(i);
     }

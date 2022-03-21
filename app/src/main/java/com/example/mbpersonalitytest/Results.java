@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,7 +21,7 @@ public class Results extends AppCompatActivity {
         setContentView(R.layout.activity_results);
 
         //variable to keep track of which of 16 types result matches with
-        int type = 0;
+        int type;
 
         //reading in relevant info from questions class with getExtra
         Intent i = getIntent();
@@ -35,45 +32,34 @@ public class Results extends AppCompatActivity {
         String resultTabTF = i.getStringExtra("P3");
         String resultTabJP = i.getStringExtra("P4");
 
-        //setting the banner to four letter result as string and adding individual letters and percentages to display tab
+        //setting the banner to four letter result as string
         TextView r0 = (TextView)findViewById(R.id.resultsToolbarText);
         r0.setText(bannerResult);
+        //adding individual letters and percentages to display tabs
+        TextView tIE = (TextView)findViewById(R.id.rTab1);
+        tIE.setText(String.format("%s %s%%", bannerResultArray[0], resultTabIE));
+        TextView tNS = (TextView)findViewById(R.id.rTab2);
+        tNS.setText(String.format("%s %s%%", bannerResultArray[1], resultTabNS));
+        TextView tTF = (TextView)findViewById(R.id.rTab3);
+        tTF.setText(String.format("%s %s%%", bannerResultArray[2], resultTabTF));
+        TextView tJP = (TextView)findViewById(R.id.rTab4);
+        tJP.setText(String.format("%s %s%%", bannerResultArray[3], resultTabJP));
 
-        TextView r1 = (TextView)findViewById(R.id.rTab1);
-        r1.setText(String.format("%s %s%%", bannerResultArray[0], resultTabIE));
-
-        TextView r2 = (TextView)findViewById(R.id.rTab2);
-        r2.setText(String.format("%s %s%%", bannerResultArray[1], resultTabNS));
-
-        TextView r3 = (TextView)findViewById(R.id.rTab3);
-        r3.setText(String.format("%s %s%%", bannerResultArray[2], resultTabTF));
-
-        TextView r4 = (TextView)findViewById(R.id.rTab4);
-        r4.setText(String.format("%s %s%%", bannerResultArray[3], resultTabJP));
-
+        //determining personality type to assign appropriate text string
         type = returnResultType(bannerResultArray);
         resultText = returnResultText(type);
         TextView firstQ = (TextView)findViewById(R.id.rText);
         firstQ.setText(resultText);
 
-        //assigning formatted date of test completion to string variable
+        //assigning formatted date of test completion to string variable and concatenating with result string
         Date currentDate = Calendar.getInstance().getTime();
         String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(currentDate);
+        String resultDisplayString = ("Result: " + bannerResult + "\n" + formattedDate);
 
-        ResultsModel resultsModel;
-
-        try {
-            resultsModel = new ResultsModel(-1, bannerResult, formattedDate);
-            Toast.makeText(Results.this, resultsModel.toString(), Toast.LENGTH_SHORT).show();
-        }
-        catch (Exception e){
-            Toast.makeText(Results.this, "Error Saving Result", Toast.LENGTH_SHORT).show();
-            resultsModel = new ResultsModel(-1, "Error", "Error");
-        }
-
+        //adding result string to database
         Database database = new Database(Results.this);
-        database.addResult(resultsModel);
-        Toast.makeText(Results.this, "Result Saved Successfully", Toast.LENGTH_SHORT).show();
+        database.addResult(resultDisplayString);
+        //Toast.makeText(Results.this, resultDisplayString, Toast.LENGTH_SHORT).show();
 
     }
 
