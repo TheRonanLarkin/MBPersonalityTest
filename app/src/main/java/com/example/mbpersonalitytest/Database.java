@@ -44,4 +44,11 @@ public class Database extends SQLiteOpenHelper {
        String query = "SELECT * FROM " + RESULTS_TABLE;
        return db.rawQuery(query, null);
    }
+
+   //method to delete table
+    public void deleteResults(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + RESULTS_TABLE;
+        db.execSQL(query);
+    }
 }

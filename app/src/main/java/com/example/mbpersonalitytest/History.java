@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class History extends AppCompatActivity {
@@ -46,5 +48,13 @@ public class History extends AppCompatActivity {
 
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         resultsList.setAdapter(adapter);
+    }
+
+    public void deleteResults(View deleteButton){
+        database.deleteResults();
+        Toast.makeText(History.this, "History Deleted", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+
     }
 }
